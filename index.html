@@ -107,7 +107,7 @@
                             <image src="img/paper_small2.png" height="60px">
                                 <h4><strong>Paper Link</strong></h4>
                             </a>
-                        </li>ß
+                        </li>
                     </ul>
                 </div>
         </div>
@@ -127,7 +127,7 @@
                     Abstract
                 </h3>
                 <p class="text-justify">
-                    For robots to follow instructions from people, they must be able to connect the rich semantic information in human vocabulary, e.g. a
+                    <i>For robots to follow instructions from people, they must be able to connect the rich semantic information in human vocabulary, e.g. a
                     “can you get me the pink stuffed whale?,” to their sensory observations and actions. This brings up a notably difficult challenge for robots:
                     while robot learning approaches allow robots to learn many different behaviors from first-hand experience, it is impractical for robots to 
                     have experiences that span all of this semantic information. We would like a robot’s policy to be able to perceive and pick up the pink stuffed whale, 
@@ -137,8 +137,10 @@
                     first-hand. We develop a simple approach, which we call Manipulation of Open- Vocabulary Objects (MOO), which leverages a pre-trained vision- language 
                     model to extract the relevant visual information from the language command, and conditions the robot policy on both the instruction and the 
                     corresponding visual information. In a variety of experiments on a real mobile manipulator, we find that MOO allows the robot to generalize zero-shot to 
-                    a wide range of novel object categories and environments.
+                    a wide range of novel object categories and environments.</i>
                 </p>
+            <br>
+            <br>
              <p style="text-align:center;">
         	    	<!-- <video id="v0" width="100%" playsinline autoplay muted loop> -->
                        <image src="img/figure1.png", class="img-responsive">
@@ -170,19 +172,22 @@
                     Motivation
                 </h3>
                 <p class="text-justify">
-                    Our ultimate goal is to get robots to do useful physical labor tasks in the real world for people. While current robotics systems have achieved many impressive
-                    feats, existing systems are typically brittle and only work for a narrow set of behaviors similar to those on which they are trained (or explicitly programmed)
-                    to perform. One can measure the generality of robotics capabilities along two axes: tasks and objects. Tasks are specific behaviors, such as "<u>pick up</u> X", "<u>move</u> X <u>near</u> Y",
-                    or "<u>take the lid off of</u> X". Objects are the entities on which tasks operate, such as "pick up the <u>apple</u>", "move the <u>can</u> near the <u>soda dispenser</u>",
+                    At Google Robotics, our overarching objective is to develop robots that can effectively perform various physical tasks for individuals in the real world.
+                    The wide-ranging and diverse assortment of practical skills needed for such tasks presents a considerable challenge in creating an all-encompassing robot system.
+                    Although current robotic systems have accomplished impressive feats, these systems are typically rigid and only function in a narrow range of behaviors, often
+                    only those which they were specifically programmed or trained to perform.
+                    
+                    Robotics capabilities can be measured based on two criteria: skills and objects. Skills refer to specific behaviors, such as "<u>pick up</u> X", "<u>move</u> X <u>near</u> Y",
+                    or "<u>take the lid off of</u> X", while objects refer to entities upon which skills operate, such as "pick up the <u>apple</u>", "move the <u>can</u> near the <u>soda dispenser</u>",
                     "take the lid off the the <u>coffee jar</u>".
                     <br><br>
-                    In this work, we focus on generalizing a limited set of tasks across to an unlimited set of new objects. We show that we can perform manipulation tasks on objects
-                    which were neither seen at training time nor explicitly programmed into the system in any way. There are many possible interfaces to a robot system. In this work, we
-                    adopt the interface of natural language, i.e. the robot takes in raw text and then completes the task as described by the text command. The raw text input
+                    In this work, we focus on extending a limited set of skills to an unlimited set of new objects. We demonstrate the ability to execute manipulation skills on objects
+                    that were neither encountered during training nor explicitly programmed into the system in any way. In our work, we use
+                    the interface of natural language, where the robot receives raw text and then executes the skill as described by the text command. This raw text input
                     can contain descriptions of any object, such as "grasp the pink stuffed elephant."
                     <br><br>
-                    We call our system MOO (<b>M</b>anipulation of <b>O</b>pen vocabulary <b>O</b>bjects). In what follows, we describe our method and data collection, 
-                    and demonstrate that MOO achieves state of the art generalization to "unseen" object categories.
+                    We have named our system MOO (<b>M</b>anipulation of <b>O</b>pen vocabulary <b>O</b>bjects). In the following sections, we detail our methodology and data collection,
+                    and show that MOO achieves state of the art generalization for "unseen" object categories.
                 </p>
                 <h3>
                     Method
@@ -192,15 +197,17 @@
                     <p style="text-align:center;">
                         <image src="img/MooArchitecture.png" class="img-responsive"/>
                     </p>
-                    Our system works by relying on an open-vocabularly object detector (namely, <a href="https://arxiv.org/abs/2205.06230">OWL-ViT</a> to handle the task of assocating natural language with
-                    objects in a visual image. Given a command for known task but an unknown object, we parse the command into the task and object parts and feed the text describing the object to OWL-ViT in order
-                    to get a bounding indicator of where the object(s) to operate on reside in the image. We modify the general purpose transformer architecture of our prior work, <a href="https://arxiv.org/abs/2212.06817">RT-1</a>
-                    , by additionally feeding in the object locations (in the form of a segmentation mask) and removing the text embedding of the objects. RT-1 is very brittle when confronted with previously unseen objects because
-                    it has seen data across a limited set of only 17 objects types during training, and it relied on natural language embeddings to determine which objects to manipulate. Given a previously unseen object, RT-1 will be confronted
-                    with a novel language embedding describing the object, making it difficult to generalize. In MOO, the the segmentation mask representation is the same for both previously seen and novel unseen objects,
-                    making generalization much easier.
-
-                    A diagram of our architectural modifications to RT-1 is shown above.
+                    Our system employs an open-vocabularly object detector, specifically <a href="https://arxiv.org/abs/2205.06230">OWL-ViT</a>, to link natural language with
+                    objects in a visual image. Given a command for known skill but an unknown object, we break down the command into the skill and object components and provide the text describing the object to OWL-ViT in order
+                    to obtain a bounding box indicator of where the object(s) reside in the robot's RGB camera image. We enhance the general purpose transformer architecture of our previous work, <a href="https://arxiv.org/abs/2212.06817">RT-1</a>
+                    , by incorporating the object locations in the form of a segmentation mask and excluding the text embedding of the objects. RT-1 tends to be brittle when confronted with previously unseen objects because
+                    it has only seen data across a limited set of only 17 objects types during training, and it relied on natural language embeddings to determine which objects to manipulate. Given a previously unseen object, RT-1 will be confronted
+                    with a novel language embedding, making it difficult to generalize. Conversely in MOO, the the segmentation mask representation is identical for both previously seen and novel unseen objects,
+                    which simplifies generalization. A diagram of our architectural modifications to RT-1 is shown above.
+                    <br>
+                    <br>
+                    Like RT-1, our system is learned end-to-end via behavioral cloning from human demonstrations.
+                    We utilize Owl-ViT on our robot demonstration training data to generate genuine detections for conditioning the manipulation policy during the training loop.
                 <br><br>
                 </p>
                 <div class="row">
@@ -209,23 +216,26 @@
                             Data
                         </h3>
                     <p class="text-justify">
-                        To test RT-1 in the real world, we collected a large dataset of real-world robotic experiences that consists of over 130k episodes, which contain over 700 tasks, and was collected with a fleet of 13 robots over 17 months.
-                        <br><br>
-                        The current set of skills includes picking, placing, opening and closing drawers, getting items in and out drawers, placing elongated items up-right, knocking them over, pulling napkins and opening jars. 
-                        The list of instructions was designed to show multiple skills with many objects to test aspects of RT-1 such as generalization to new instructions and ability to perform many skills. 
-                        The entire process of adding tasks and data is described in detail in the paper.
-                        Since we do not make any assumptions about particular skills when adding new instructions, the system is easily extendable, and we can continuously provide more diverse data to improve its capabilities.
+                        <p style="text-align:center;">
+                            <image src="img/object_distribution.png" class="img-responsive"/>
+                        </p> 
+                        We found that we needed to greatly expand the training dataset of RT-1 in order to learn generalizable manipulation skills. The original RT-1 dataset included only 16 object types, and
+                        our early attempts struggled to manipulate objects with shapes different from those in the training set. Since most skills require grasping (picking) the object as a component
+                        step, we hypothesized that we could learn most of the information needed to generalize skills to unseen objects by only incorporating more grasping demonstrations
+                        into the RT-1 dataset. We added additional grasping demonstrations across 90 diverse object categories as shown in the figure above. We found that we could transfer knowledge from
+                        these grasping, or "pick" episodes to the existing RT-1 skills ("move X near Y", "place X upside down", etc). 
                     </div>
                 </div>
 
 
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <h3>
                     Results
                 </h3>
 		<p class="text-justify">
-We test generalization capabilities of our model on multiple axes such as previously unseen instructions, robustness to the number of distractor objects (first row in the image below), robustness to different backgrounds and environments such as new, previously unseen kitchens (second row), and realistic scenarios that combine all these elements.
+
+            We tested the ability of 
 		
 		<p style="text-align:center;">
         	    <image src="img/evals.png" class="img-responsive">        	   
@@ -338,15 +348,11 @@ On distractors and backgrounds, we find that RT-1 is quite robust, successfully 
               <p style="text-align:center;">
                 </p>
             </div>
-        </div>
+        </div> -->
 
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <h3>
-                    Acknowledgements
-                </h3>
                 <p class="text-justify">
-The authors would like to acknowledge Aleksandra Faust, Andy Christiansen, Chuyuan Fu, Daniel Kappler, David Rendleman, Eric Jang, Jessica Gomez, Jessica Lin, Jie Tan, Josh Weaver, Justin Boyd, Krzysztof Choromanski, Matthew Bennice, Mengyuan Yan, Mrinal Kalakrishnan, Nik Stewart, Paul Wohlhart, Peter Pastor, Pierre Sermanet, Wenlong Lu, Zhen Yu Song, Zhuo Xu, and the greater teams at Robotics at Google and Everyday Robots for their feedback and contributions.
                     <br><br>
                 The website template was borrowed from <a href="http://jonbarron.info/">Jon Barron</a>.
                 </p>
