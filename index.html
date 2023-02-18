@@ -238,14 +238,14 @@
                     </p>
                     Our focus is mainly on the system's ability to generalize and perform skills on objects that it has never encountered during training. To test this, we position our robot beside a tabletop surface that is
                     covered with a variety of objects and then provide a natural language command to execute a specific skill on a designated object, as depicted above. The majority of the objects
-                    on the table are distractors and should not be involved in the episode, and the target object has not been seen previously. We repeat this process for each skill
+                    on the table are distractors and should not be involved in the episode, and the target object has not been seen previously. We repeat this process for each skill multiple
                     times and record the percentage of successful episodes. We compare our results to those of <a href="https://arxiv.org/abs/2212.06817">RT-1</a> and <a href="https://arxiv.org/abs/2210.03094">VIMA</a>
                     for baseline evaluation.
                     <p style="text-align:center;">
                         <image src="img/maintable.png" class="img-responsive"/>
                     </p>
 
-                    The primarly experimental outcomes outcomes are presented in the table above. The results reveal that MOO surpasses other methods in performance on both seen and unseen objects.
+                    The primary experimental outcomes are presented in the table above. The results reveal that MOO surpasses other methods in performance on both seen and unseen objects.
                     Notably, MOO demonstrates an impressive success rate of approximately 75% for executing skills on objects that it has never encountered before. Through a series of ablations, we
                     have established a strong correlation between increased performance and larger dataset sizes and model capacity. Additionally, we have demonstrated that MOO is more robust than
                     competing methods in managing distracting environments. For further insights, we encourage you to consult our paper.
