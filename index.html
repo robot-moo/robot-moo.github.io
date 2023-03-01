@@ -84,7 +84,7 @@
             <div class="col-md-12 text-center">
                 <ul class="list-inline">
                 <br>
-                <li>Austin Stone*</li> <li>Ted Xiao*</li> <li>Yao Lu*</li> <li>Quan Vuong </li> <li>Paul Wohlhart</li> <li> Kuang-Huei Lee</li> <li>Keerthana Gopalakrishnan</li> <li> Fei Xia</li> <li>Chelsea Finn</li> <li> Karol Hausman</li><br>
+                <li>Austin Stone*</li> <li>Ted Xiao*</li> <li>Yao Lu*</li> <li>Keerthana Gopalakrishnan</li> <li> Kuang-Huei Lee</li> <li>Quan Vuong </li> <li>Paul Wohlhart</li>  <li> Brianna Zitkovich</li> <li>Fei Xia</li> <li>Chelsea Finn</li> <li>Karol Hausman</li><br>
                 <br>
 			<b><i> *Denotes equal contribution. </i></b>
 		<br><br>
@@ -123,17 +123,7 @@
                     Abstract
                 </h3>
                 <p class="text-justify">
-                    <i>For robots to follow instructions from people, they must be able to connect the rich semantic information in human vocabulary, e.g. a
-                    “can you get me the pink stuffed whale?,” to their sensory observations and actions. This brings up a notably difficult challenge for robots:
-                    while robot learning approaches allow robots to learn many different behaviors from first-hand experience, it is impractical for robots to 
-                    have experiences that span all of this semantic information. We would like a robot’s policy to be able to perceive and pick up the pink stuffed whale, 
-                    even if it has never seen any data interacting with a stuffed whale before. Fortunately, static data on the internet has vast semantic information, and 
-                    this information is captured in pre-trained vision-language models. In this paper, we study whether we can interface robot policies with these 
-                    pre-trained models, with the aim of allowing robots to complete instructions involving object categories that the robot has never seen 
-                    first-hand. We develop a simple approach, which we call Manipulation of Open-World Objects (MOO), which leverages a pre-trained vision-language 
-                    model to extract the relevant visual information from the language command, and conditions the robot policy on both the instruction and the 
-                    corresponding visual information. In a variety of experiments on a real mobile manipulator, we find that MOO allows the robot to generalize zero-shot to 
-                    a wide range of novel object categories and environments.</i>
+                    <i>For robots to follow instructions from people, they must be able to connect the rich semantic information in human vocabulary, e.g. "can you get me the pink stuffed whale?"" to their sensory observations and actions. This brings up a notably difficult challenge for robots: while robot learning approaches allow robots to learn many different behaviors from first-hand experience, it is impractical for robots to have first-hand experiences that span all of this semantic information. We would like a robot's policy to be able to perceive and pick up the pink stuffed whale, even if it has never seen any data interacting with a stuffed whale before. Fortunately, static data on the internet has vast semantic information, and this information is captured in pre-trained vision-language models. In this paper, we study whether we can interface robot policies with these pre-trained models, with the aim of allowing robots to complete instructions involving object categories that the robot has never seen first-hand. We develop a simple approach, which we call Manipulation of Open-World Objects (MOO), which leverages a pre-trained vision-language model to extract object-identifying information from the language command and image, and conditions the robot policy on the current image, the instruction, and the extracted object information. In a variety of experiments on a real mobile manipulator, we find that MOO generalizes zero-shot to a wide range of novel object categories and environments. In addition, we show how MOO generalizes to other, non-language-based input modalities to specify the object of interest such as finger pointing, and how it can be further extended to enable open-world navigation and manipulation.</i>
                 </p>
             <br>
             <br>
@@ -141,7 +131,7 @@
         	    	<!-- <video id="v0" width="100%" playsinline autoplay muted loop> -->
                        <image src="img/figure1.png", class="img-responsive">
                    <!-- </video> -->
-                   We train a language-conditioned policy conditioned on object localizations from a frozen vision-language model (VLM). The policy is trained on demonstrations spanning a diverse set of 106 objects (left), allowing it to generalize to novel physical objects while the open-vocabulary VLM localization (center) allows the policy to generalize to novel semantic categories (right).
+                   We train a language-conditioned policy conditioned on object localizations from a frozen vision-language model (VLM). The policy is trained on demonstrations spanning a diverse set of 106 objects utilizing object-centric representations generated by a VLM, enabling the policy to generalize to novel objects and object localizations produced from modalities unseen during training.
             </p>
             </div>
         </div>
@@ -284,7 +274,7 @@
 
                 <p class="text-justify">
                    Open-world manipulation can be integrated with open-vocabulary object goal navigation. Coincidentally, there is an open-vocabulary object navigation algorithm
-                   called <a href="https://arxiv.org/abs/2203.10421">Clip on Wheels (CoW)</a>; we implement a variant of CoW and combine it with MOO, which can be called CoW-MOO. CoW handles open-vocabulary navigation to an object of interest, and MOO continues with manipulating the target object.
+                   called <a href="https://arxiv.org/abs/2203.10421">Clip on Wheels (CoW)</a>; we implement a variant of CoW and combine it with MOO, which we refer to as CoW-MOO. CoW handles open-vocabulary navigation to an object of interest, and MOO continues with manipulating the target object.
                 </p>
 
 
@@ -297,8 +287,8 @@
                     <textarea id="bibtex" class="form-control" readonly>
 @inproceedings{moo2023arxiv,
     title={Open-World Object Manipulation using Pre-Trained Vision-Language Model},
-    author={Austin Stone and Ted Xiao and Yao Lu and Quan Vuong and Paul Wohlhart and Kuang-Huei Lee and Keerthana Gopalakrishnan and Fei Xia and Chelsea Finn and Karol Hausman}
-    booktitle={arXiv preprint TODO TODO},
+    author={Austin Stone and Ted Xiao and Yao Lu and Keerthana Gopalakrishnan and Kuang-Huei Lee and Quan Vuong and Paul Wohlhart and Brianna Zitkovich and Fei Xia and Chelsea Finn and Karol Hausman}
+    booktitle={arXiv preprint},
     year={2023}
 }</textarea>
                 </div>
