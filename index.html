@@ -6,9 +6,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <title>Open-Vocabulary Object Manipulation using Pre-Trained Vision-Language Models</title>
+    <title>Open-World Object Manipulation using Pre-Trained Vision-Language Models</title>
 
-    <meta name="description" content="Open-Vocabulary Object Manipulation using Pre-Trained Vision-Language Models">
+    <meta name="description" content="Open-World Object Manipulation using Pre-Trained Vision-Language Models">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- <base href="/"> -->
@@ -20,13 +20,13 @@
     <meta property="og:image:height" content="682">
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://robot-moo.github.io/"/>
-    <meta property="og:title" content="Open-Vocabulary Object Manipulation using Pre-Trained Vision-Language Models" />
-    <meta property="og:description" content="Project page for Open-Vocabulary Object Manipulation using Pre-Trained Vision-Language Models." />
+    <meta property="og:title" content="Open-World Object Manipulation using Pre-Trained Vision-Language Models" />
+    <meta property="og:description" content="Project page for Open-World Object Manipulation using Pre-Trained Vision-Language Models." />
 
         <!--TWITTER-->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Open-Vocabulary Object Manipulation using Pre-Trained Vision-Language Models" />
-    <meta name="twitter:description" content="Project page for Open-Vocabulary Object Manipulation using Pre-Trained Vision-Language Models." />
+    <meta name="twitter:title" content="Open-World Object Manipulation using Pre-Trained Vision-Language Models" />
+    <meta name="twitter:description" content="Project page for Open-World Object Manipulation using Pre-Trained Vision-Language Models." />
     <meta name="twitter:image" content="https://robot-moo.github.io/img/figure1.png" />
 
 
@@ -74,7 +74,7 @@
     <div class="container" id="main">
         <div class="row">
             <h2 class="col-md-12 text-center">
-                <strong><font size="+6">Open-Vocabulary Object Manipulation using Pre-Trained Vision-Language Models</font></strong>
+                <strong><font size="+6">Open-World Object Manipulation using Pre-Trained Vision-Language Models</font></strong>
                 <!--<small>
                     CoRL 2021
                 </small>-->
@@ -132,9 +132,9 @@
                     while robot learning approaches allow robots to learn many different behaviors from first-hand experience, it is impractical for robots to 
                     have experiences that span all of this semantic information. We would like a robot’s policy to be able to perceive and pick up the pink stuffed whale, 
                     even if it has never seen any data interacting with a stuffed whale before. Fortunately, static data on the internet has vast semantic information, and 
-                    this information is captured in pre- trained vision-language models. In this paper, we study whether we can interface robot policies with these 
+                    this information is captured in pre-trained vision-language models. In this paper, we study whether we can interface robot policies with these 
                     pre-trained models, with the aim of allowing robots to complete instructions involving object categories that the robot has never seen 
-                    first-hand. We develop a simple approach, which we call Manipulation of Open- Vocabulary Objects (MOO), which leverages a pre-trained vision- language 
+                    first-hand. We develop a simple approach, which we call Manipulation of Open-World Objects (MOO), which leverages a pre-trained vision-language 
                     model to extract the relevant visual information from the language command, and conditions the robot policy on both the instruction and the 
                     corresponding visual information. In a variety of experiments on a real mobile manipulator, we find that MOO allows the robot to generalize zero-shot to 
                     a wide range of novel object categories and environments.</i>
@@ -174,7 +174,7 @@
                     </p>
                 </h3>
                 <p class="text-justify">
-                    At Google Robotics, our overarching objective is to develop robots that can effectively perform various physical tasks for individuals in the real world.
+                    A grand milestone in robotics is to develop robots that can effectively perform various physical tasks for individuals in the real world.
                     The wide-ranging and diverse assortment of practical skills needed for such tasks presents a considerable challenge in creating an all-encompassing robot system.
                     Although current robotic systems have accomplished impressive feats, these systems are typically rigid and only function in a narrow range of behaviors, often
                     only those which they were specifically programmed or trained to perform.
@@ -188,7 +188,7 @@
                     the interface of natural language, where the robot receives raw text and then executes the skill as described by the text command. This raw text input
                     can contain descriptions of any object, such as "grasp the pink stuffed elephant."
                     <br><br>
-                    We have named our system MOO (<b>M</b>anipulation of <b>O</b>pen vocabulary <b>O</b>bjects). In the following sections, we detail our methodology and data collection,
+                    We have named our system MOO (<b>M</b>anipulation of <b>O</b>pen-World <b>O</b>bjects). In the following sections, we detail our methodology and data collection,
                     and show that MOO achieves state of the art generalization for "unseen" object categories.
                 </p>
                 <h3>
@@ -261,23 +261,24 @@
                     <source src="img/pointing_demo_compressed.mp4" type="video/mp4">
                 </video>
                 <p class="text-justify">
-                   Pointing picking demo.
+                    We explore using a generative VLM like <a href="https://ai.googleblog.com/2022/09/pali-scaling-language-image-learning-in.html">PaLI</a> to generate an image caption which is then provided to OwL-ViT to generate a mask usable by MOO. For example, PaLI can interpret human intent by identifying which object a person is pointing to, which MOO then successfully manipulates.
                 </p>
 
-
-                <video id="v0" width="100%" playsinline loop controls>
-                    <source src="img/clicking_demo_compressed.mp4" type="video/mp4">
-                </video>
-                <p class="text-justify">
-                   Clicking picking demo.
-                </p>
 
                 <video id="v0" width="100%" playsinline loop controls>
                     <source src="img/image_demo_compressed.mp4" type="video/mp4">
                 </video>
                 <p class="text-justify">
-                   Image picking demo.
+                   OwL-ViT need not be conditioned on a textual query; it can also be prompted with an image query, such as a stock image downloaded from the internet. Image-based qurrying is especially relevant when objects are hard to describe in words, such as when there are many visually similar objects in a scene. In these cases, it may be most effectie to directly provide an image of the target of interest.
                 </p>
+
+	    	<video id="v0" width="100%" playsinline loop controls>
+                    <source src="img/clicking_demo_compressed.mp4" type="video/mp4">
+                </video>
+                <p class="text-justify">
+                    In cases where OwL-ViT or other VLMs fail to produce an accurate detection, we experiment with a GUI where humans can directly input the ground-truth mask provided to the policy. This is especially useful in cases with clutter or repeated objects, where textual or visual queries may be quite difficult even for state-of-the-art VLMs.
+                </p>
+
 
                 <div class="text-center">
                     <div style="position:relative;padding-top:56.25%;">
@@ -286,8 +287,8 @@
                 </div>
 
                 <p class="text-justify">
-                   Open-Vocabulary manipulation can be integrated with open-vocabulary object goal navigation. Coincidentally there is an open-vocabulary object navigation algorithm
-                   called Clip on Wheels (CoW), we implemented a variant of CoW and combined with MOO. The system can be called CoW-MOO.
+                   Open-world manipulation can be integrated with open-vocabulary object goal navigation. Coincidentally, there is an open-vocabulary object navigation algorithm
+                   called <a href="https://arxiv.org/abs/2203.10421">Clip on Wheels (CoW)</a>; we implement a variant of CoW and combine it with MOO, which can be called CoW-MOO. CoW handles open-vocabulary navigation to an object of interest, and MOO continues with manipulating the target object.
                 </p>
 
 
@@ -299,7 +300,7 @@
                 <div class="form-group col-md-10 col-md-offset-1">
                     <textarea id="bibtex" class="form-control" readonly>
 @inproceedings{moo2023arxiv,
-    title={Open-Vocabulary Object Manipulation using Pre-Trained Vision-Language Model},
+    title={Open-World Object Manipulation using Pre-Trained Vision-Language Model},
     author={Austin Stone and Ted Xiao and Yao Lu and Quan Vuong and Paul Wohlhart and Kuang-Huei Lee and Keerthana Gopalakrishnan and Fei Xia and Chelsea Finn and Karol Hausman}
     booktitle={arXiv preprint TODO TODO},
     year={2023}
