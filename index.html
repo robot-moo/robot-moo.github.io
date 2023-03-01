@@ -196,7 +196,7 @@
                     <br>
                     <br>
                     Like RT-1, our system is learned end-to-end via behavioral cloning from human demonstrations.
-                    We utilize Owl-ViT on our robot demonstration training data to generate genuine detections for conditioning the manipulation policy during the training loop.
+                    We utilize OWL-ViT on our robot demonstration training data to generate genuine detections for conditioning the manipulation policy during the training loop.
                 <br><br>
                 </p>
                         <h3>
@@ -254,7 +254,7 @@
                     <source src="img/pointing_demo_compressed.mp4" type="video/mp4">
                 </video>
                 <p class="text-justify">
-                    We explore using a generative VLM like <a href="https://ai.googleblog.com/2022/09/pali-scaling-language-image-learning-in.html">PaLI</a> to generate an image caption which is then provided to OwL-ViT to generate a mask usable by MOO. For example, PaLI can interpret human intent by identifying which object a person is pointing to, which MOO then successfully manipulates.
+                    We explore using a generative VLM like <a href="https://ai.googleblog.com/2022/09/pali-scaling-language-image-learning-in.html">PaLI</a> to generate an image caption which is then provided to OWL-ViT to generate a mask usable by MOO. For example, PaLI can interpret human intent by identifying which object a person is pointing to, which MOO then successfully manipulates.
                 </p>
 
 
@@ -262,14 +262,14 @@
                     <source src="img/image_demo_compressed.mp4" type="video/mp4">
                 </video>
                 <p class="text-justify">
-                   OwL-ViT need not be conditioned on a textual query; it can also be prompted with an image query, such as a stock image downloaded from the internet. Image-based qurrying is especially relevant when objects are hard to describe in words, such as when there are many visually similar objects in a scene. In these cases, it may be most effectie to directly provide an image of the target of interest.
+                   OWL-ViT need not be conditioned on a textual query; it can also be prompted with an image query, such as a stock image downloaded from the internet. Image-based qurrying is especially relevant when objects are hard to describe in words, such as when there are many visually similar objects in a scene. In these cases, it may be most effectie to directly provide an image of the target of interest.
                 </p>
 
 	    	<video id="v0" width="100%" playsinline loop controls>
                     <source src="img/clicking_demo_compressed.mp4" type="video/mp4">
                 </video>
                 <p class="text-justify">
-                    In cases where OwL-ViT or other VLMs fail to produce an accurate detection, we experiment with a GUI where humans can directly input the ground-truth mask provided to the policy. This is especially useful in cases with clutter or repeated objects, where textual or visual queries may be quite difficult even for state-of-the-art VLMs.
+                    In cases where OWL-ViT or other VLMs fail to produce an accurate detection, we experiment with a GUI where humans can directly input the ground-truth mask provided to the policy. This is especially useful in cases with clutter or repeated objects, where textual or visual queries may be quite difficult even for state-of-the-art VLMs.
                 </p>
 
 
