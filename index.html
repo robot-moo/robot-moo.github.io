@@ -75,16 +75,13 @@
         <div class="row">
             <h2 class="col-md-12 text-center">
                 <strong><font size="+6">Open-World Object Manipulation using Pre-Trained Vision-Language Models</font></strong>
-                <!--<small>
-                    CoRL 2021
-                </small>-->
             </h2>
         </div>
         <div class="row">
             <div class="col-md-12 text-center">
                 <ul class="list-inline">
                 <br>
-                <li>Austin Stone*</li> <li>Ted Xiao*</li> <li>Yao Lu*</li> <li>Keerthana Gopalakrishnan</li> <li> Kuang-Huei Lee</li> <br> <li>Quan Vuong </li> <li>Paul Wohlhart</li>  <li> Brianna Zitkovich</li> <li>Fei Xia</li> <li>Chelsea Finn</li> <li>Karol Hausman</li><br>
+                <li>Austin Stone*</li> <li>Ted Xiao*</li> <li>Yao Lu*</li> <li>Keerthana Gopalakrishnan</li> <li> Kuang-Huei Lee</li> <br> <li>Quan Vuong </li> <li>Paul Wohlhart</li> <li>Sean Kirmani </li> <li> Brianna Zitkovich</li> <li>Fei Xia</li> <li>Chelsea Finn</li> <li>Karol Hausman</li><br>
                 <br>
 			<i> *Denotes equal contribution. </i>
 		<br><br>
@@ -233,12 +230,13 @@
                     on the table are distractors and should not be involved in the episode, and the target object has not been seen previously. We repeat this process for each skill multiple
                     times and record the percentage of successful episodes. We compare our results to those of <a href="https://arxiv.org/abs/2212.06817">RT-1</a> and <a href="https://arxiv.org/abs/2210.03094">VIMA</a>
                     for baseline evaluation.
+                    
                     <p style="text-align:center;">
-                        <image src="img/maintable.png" class="img-responsive"/>
+                        <image src="img/main_bar_chart.png" class="img-responsive" style="margin-top: 20px; margin-bottom: 20px;"/>
                     </p>
 
                     The primary experimental outcomes are presented in the table above. The results reveal that MOO surpasses other methods in performance on both seen and unseen objects.
-                    Notably, MOO demonstrates an impressive success rate of approximately 75% for executing skills on objects that it has never encountered before. Through a series of ablations, we
+                    Notably, MOO demonstrates an impressive success rate of approximately 79% for executing skills on objects that it has never encountered before. Through a series of ablations, we
                     have established a strong correlation between increased performance and larger dataset sizes and model capacity. Additionally, we have demonstrated that MOO is more robust than
                     competing methods in managing distracting environments. For further insights, we encourage you to consult our paper.
                 </p>
@@ -253,7 +251,7 @@
                    <source src="img/montage_all_3x4.mp4" type="video/mp4">
                 </video>
                 <p class="text-justify">
-                    We conduct extensive real-world evaluations of MOO peformance on 13 seen objeects and 8 unseen objects, where we find that MOO is able to generalize to novel objects. In addition, we ablate MOO's model capacity and training distribution, and find that high-capactiy models with large amounts of diverse data are crucial to strong performance.
+                    We conduct extensive real-world evaluations of MOO peformance on 49 seen objects and 47 unseen objects, where we find that MOO is able to generalize to novel objects. In addition, we ablate MOO's model capacity and training distribution, and find that high-capactiy models with large amounts of diverse data are crucial to strong performance.
                 </p>
 
                 <video id="v0" width="100%" playsinline loop controls>
@@ -268,7 +266,7 @@
                     <source src="img/image_demo_compressed.mp4" type="video/mp4">
                 </video>
                 <p class="text-justify">
-                   OWL-ViT need not be conditioned on a textual query; it can also be prompted with an image query, such as a stock image downloaded from the internet. Image-based qurrying is especially relevant when objects are hard to describe in words, such as when there are many visually similar objects in a scene. In these cases, it may be most effective to directly provide an image of the target of interest.
+                   OWL-ViT need not be conditioned on a textual query; it can also be prompted with an image query, such as a stock image downloaded from the internet. Image-based querying is especially relevant when objects are hard to describe in words, such as when there are many visually similar objects in a scene. In these cases, it may be most effective to directly provide an image of the target of interest.
                 </p>
 
 	    	<video id="v0" width="100%" playsinline loop controls>
@@ -300,7 +298,7 @@
                     <textarea id="bibtex" class="form-control" readonly>
 @inproceedings{moo2023arxiv,
     title={Open-World Object Manipulation using Pre-Trained Vision-Language Model},
-    author={Austin Stone and Ted Xiao and Yao Lu and Keerthana Gopalakrishnan and Kuang-Huei Lee and Quan Vuong and Paul Wohlhart and Brianna Zitkovich and Fei Xia and Chelsea Finn and Karol Hausman}
+    author={Austin Stone and Ted Xiao and Yao Lu and Keerthana Gopalakrishnan and Kuang-Huei Lee and Quan Vuong and Paul Wohlhart and Sean Kirmani and Brianna Zitkovich and Fei Xia and Chelsea Finn and Karol Hausman}
     booktitle={arXiv preprint},
     year={2023}
 }</textarea>
